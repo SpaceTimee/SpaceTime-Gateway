@@ -27,10 +27,7 @@ const extractBearerToken = (header: string | undefined): string | null => {
 }
 
 const errorJson = (message: string, status: number) =>
-  Response.json(
-    { error: { message, type: 'authentication_error', param: null, code: null } },
-    { status }
-  )
+  Response.json({ error: { message, type: 'authentication_error', param: null, code: null } }, { status })
 
 const verifyApiKey = async (
   token: string,
