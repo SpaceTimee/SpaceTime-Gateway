@@ -20,6 +20,9 @@ enabled = true
 head_sampling_rate = 1
 persist = true
 
+[triggers]
+crons = ["*/5 * * * *"]
+
 [vars]
 # ===== Core Settings =====
 CLERK_SECRET_KEY = ""           # [secret] Clerk secret key

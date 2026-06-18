@@ -68,7 +68,7 @@ const verifyApiKey = async (
   }
 }
 
-export default new Hono<{ Bindings: Env }>()
+const app = new Hono<{ Bindings: Env }>()
   .use('*', async (c, next) => {
     if (!c.env.DISABLE_LOGGER_OUTPUT) return logger()(c, next)
     await next()
@@ -98,3 +98,12 @@ export default new Hono<{ Bindings: Env }>()
     const resHeaders = new Headers(res.headers)
     return c.newResponse(res.body, { status: res.status as StatusCode, headers: resHeaders })
   })
+
+export default {
+  fetch: app.fetch,
+  scheduled: (_event: ScheduledEvent, _env: Env, ctx: ExecutionContext) => {
+    ctx.waitUntil(
+      fetch('https://router.spacetimee.xyz').catch((err) => console.error(`Keep-alive error: ${err}`))
+    )
+  }
+}
