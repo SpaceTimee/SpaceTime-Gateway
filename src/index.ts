@@ -76,6 +76,7 @@ const app = new Hono<{ Bindings: Env }>()
   .use('*', secureHeaders({ crossOriginResourcePolicy: 'cross-origin' }))
   .use('*', cors())
   .onError((_, c) => c.text('Internal Server Error', 500))
+  .get('/', (c) => c.redirect('https://accounts.spacetimee.xyz', 308))
   .all('*', async (c) => {
     const { env } = c
 

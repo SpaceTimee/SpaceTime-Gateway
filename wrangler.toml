@@ -5,6 +5,7 @@ compatibility_date = "2026-01-01"
 compatibility_flags = ["nodejs_compat"]
 
 routes = [
+  { pattern = "router.spacetimee.xyz", zone_name = "spacetimee.xyz" },
   { pattern = "router.spacetimee.xyz/v1/*", zone_name = "spacetimee.xyz" }
 ]
 
@@ -24,9 +25,5 @@ persist = true
 crons = ["*/5 * * * *"]
 
 [vars]
-# ===== Core Settings =====
-CLERK_SECRET_KEY = ""           # [secret] Clerk secret key
-ROUTER_API_KEY = ""             # [secret] Router API key
-
 # ===== Logging & Debug =====
 DISABLE_LOGGER_OUTPUT = ""      # [flag] Disable request logging
